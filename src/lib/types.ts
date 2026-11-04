@@ -10,8 +10,14 @@ export interface Room {
   name: string;
   building: string;
   capacity: number;
+  equipment: string[];
   blocked: boolean;
   bookings: Booking[];
+}
+
+export interface FilterCriteria {
+  minCapacity: number;
+  requiredEquipment: string[];
 }
 
 export type CheckStatus = 'available' | 'unavailable' | null;
