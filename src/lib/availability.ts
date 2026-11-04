@@ -1,8 +1,8 @@
 import type { Room, CheckResult } from './types';
 import { intervalsOverlap, clamp } from './utils';
 
-const MAX_BOOKING_MIN = 120;
-const MAX_TIME = 1440;
+export const MAX_BOOKING_MIN = 120;
+export const MAX_TIME = 1440;
 
 export function checkAvailability(
   room: Room,
@@ -36,7 +36,7 @@ export function checkAvailability(
     );
   }
 
-  // AC3: reject when the selected room is blocked
+  // AC3 & F3: reject when the selected room is blocked
   if (room.blocked) {
     reasons.push('This room is currently blocked and cannot be booked.');
   }
@@ -70,6 +70,10 @@ export function suggestNextSlot(
   currentTime: number,
   duration: number
 ): { start: number; end: number } | null {
+  if (room.blocked) {
+    return null;
+  }
+
   const dur = clamp(duration, 1, MAX_BOOKING_MIN);
   const sorted = [...room.bookings].sort((a, b) => a.start - b.start);
 
