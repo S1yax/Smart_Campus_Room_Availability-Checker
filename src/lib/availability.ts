@@ -2,7 +2,6 @@ import type { Room, CheckResult } from './types';
 import { intervalsOverlap, clamp } from './utils';
 import { MAX_BOOKING_MIN, MAX_TIME } from './booking-rules';
 
-export { MAX_BOOKING_MIN, MAX_TIME };
 export function checkAvailability(
   room: Room,
   start: number,

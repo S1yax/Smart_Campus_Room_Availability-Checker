@@ -1,7 +1,7 @@
 import React from 'react';
 import { Clock, ArrowRight } from 'lucide-react';
 import { minutesToLabel } from '@/lib/utils';
-import { MAX_BOOKING_MIN, MAX_TIME } from '@/lib/availability';
+import { MAX_BOOKING_MIN, MAX_TIME } from '@/lib/booking-rules';
 
 interface BookingFormProps {
   currentTime: number;
