@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config'; // CHANGED: was 'vite'
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
 
@@ -12,5 +12,10 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
+  },
+  // CHANGED: added test block so UI tests get a browser-like environment
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test-setup.ts'],
   },
 });
