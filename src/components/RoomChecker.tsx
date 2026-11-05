@@ -3,6 +3,7 @@ import { DoorOpen, Ban, MapPin, Users, Tag, Clock } from 'lucide-react';
 import { ROOMS } from '@/lib/data';
 import type { CheckResult, FilterCriteria } from '@/lib/types';
 import { checkAvailability, suggestNextSlot } from '@/lib/availability';
+import { SUGGESTION_LENGTH_MIN } from '@/lib/booking-rules'; // CHANGED: new import
 import { filterRooms } from '@/lib/filter';
 import { minutesToLabel } from '@/lib/utils';
 import Timeline from '@/components/Timeline';
@@ -87,7 +88,7 @@ export default function RoomChecker() {
     if (!activeRoom || activeRoom.blocked) {
       return null;
     }
-    const dur = Math.min(end - start, 60);
+    const dur = Math.min(end - start, SUGGESTION_LENGTH_MIN); // CHANGED: was 60
     if (dur > 0) {
       return suggestNextSlot(activeRoom, currentTime, dur);
     }
